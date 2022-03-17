@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:grocery/helper/appcolors.dart';
 import 'package:grocery/helper/iconFontHelper.dart';
 import 'package:grocery/pages/categorylistpage.dart';
+import 'package:grocery/pages/onboardingpage.dart';
+import 'package:grocery/widgets/themebutton.dart';
 
 import '../widgets/iconFont.dart';
 
@@ -19,7 +21,7 @@ class WelcomePage extends StatelessWidget {
               child: Opacity(
                   opacity: 0.3,
                   child: Image.asset(
-                    'assets/img/of_main_bg.png',
+                    'assets/imgs/of_main_bg.png',
                     fit: BoxFit.cover,
                   )),
             ),
@@ -69,64 +71,34 @@ class WelcomePage extends StatelessWidget {
                   const SizedBox(
                     height: 30,
                   ),
-                  Padding(
-                    padding: const EdgeInsets.all(20),
-                    child: FlatButton(
-                      onPressed: () {},
-                      color: Color(0xFF80C038),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(50),
-                      ),
-                      padding: EdgeInsets.all(25),
-                      child: const Text(
-                        'Start Now!',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                  ),
-                  Container(
-                    margin: EdgeInsets.only(left: 20, right: 20, bottom: 20),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(50),
-                      child: Material(
-                        color: Colors.transparent,
-                        child: InkWell(
-                          splashColor: AppColors.MAIN_COLOR.withOpacity(0.2),
-                          highlightColor: AppColors.MAIN_COLOR.withOpacity(0.2),
-                          onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => CategoryListPage(),
-                              ),
-                            );
-                          },
-                          child: Container(
-                            padding: EdgeInsets.all(20),
-                            child: const Text(
-                              'Login',
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                fontSize: 16,
-                                color: Color(0xFF80C038),
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(50),
-                              color: Colors.transparent,
-                              border: Border.all(
-                                color: const Color(0xFF80C038),
-                                width: 4,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
+                  ThemeButton(
+                      label: 'Start Now!',
+                      highlight: Colors.green[900],
+                      color: AppColors.MAIN_COLOR,
+                      onClick: () {}),
+                  ThemeButton(
+                      label: 'Hacer Onboarding',
+                      highlight: Colors.green[900],
+                      color: AppColors.DARK_GREEN,
+                      onClick: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => OnboardingPage()));
+                      }),
+                  ThemeButton(
+                    label: 'Login',
+                    labelColor: AppColors.MAIN_COLOR,
+                    color: Colors.transparent,
+                    highlight: AppColors.MAIN_COLOR.withOpacity(0.5),
+                    borderColor: AppColors.MAIN_COLOR,
+                    borderWidth: 4,
+                    onClick: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => CategoryListPage()));
+                    },
                   ),
                 ],
               ),

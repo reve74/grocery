@@ -1,60 +1,62 @@
 import 'package:flutter/material.dart';
-import 'package:grocery/helper/appcolors.dart';
-import 'package:grocery/helper/iconFontHelper.dart';
 import 'package:grocery/models/category.dart';
+import 'package:grocery/pages/selectedcategorypage.dart';
+import 'package:grocery/widgets/categorybottombar.dart';
 import 'package:grocery/widgets/categorycard.dart';
-import 'package:grocery/widgets/categoryicon.dart';
-import 'package:grocery/widgets/iconfont.dart';
+import 'package:grocery/widgets/mainappbar.dart';
 
 import '../helper/utils.dart';
 
 class CategoryListPage extends StatelessWidget {
   List<Category>? categories = Utils.getMockedCategories();
 
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: Drawer(),
-      appBar: AppBar(
-        title: IconFont(
-          iconName: IconFontHelper.LOGO,
-          color: AppColors.MAIN_COLOR,
-          size: 40,
-        ),
-        backgroundColor: Colors.transparent,
-        elevation: 0.0,
-        iconTheme: const IconThemeData(
-          color: AppColors.MAIN_COLOR,
-        ),
-        actions: [
-          Container(
-            margin: const EdgeInsets.only(right: 10),
-            padding: const EdgeInsets.all(10),
-            child: ClipOval(
-              child: Image.asset('assets/imgs/me.jpg'),
-            ),
-          ),
-        ],
-      ),
+      appBar: MainAppBar(),
       body: Container(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
+        child: Stack(
           children: [
-            const Padding(
-              padding: EdgeInsets.symmetric(vertical: 10),
-              child: Text(
-                'Select a category',
-                textAlign: TextAlign.center,
-                style: TextStyle(color: Colors.black),
-              ),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                const Padding(
+                  padding: EdgeInsets.symmetric(vertical: 10),
+                  child: Text(
+                    'Select a category',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(color: Colors.black),
+                  ),
+                ),
+                Expanded(
+                  child: ListView.builder(
+                    padding: EdgeInsets.only(bottom: 120),
+                    itemCount: categories!.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      return CategoryCard(
+                        category: categories![index],
+                        onCardClick: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      SelectedCategoryPage(
+                                        selectedCategory: categories![index],
+                                      )));
+                        },
+                      );
+                    },
+                  ),
+                ),
+              ],
             ),
-            Expanded(
-              child: ListView.builder(
-                itemCount: categories!.length,
-                itemBuilder: (BuildContext context, int index) {
-                  return CategoryCard(category: categories![index]);
-                },
-              ),
+            Positioned(
+              bottom: 0,
+              right: 0,
+              left: 0,
+              child: CategoryBottomBar(),
             ),
           ],
         ),
