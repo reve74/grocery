@@ -6,7 +6,8 @@ import 'package:grocery/widgets/iconFont.dart';
 class MainAppBar extends StatefulWidget implements PreferredSizeWidget {
 
   Color? themeColor;
-  MainAppBar({this.themeColor=AppColors.MAIN_COLOR});
+  bool? showProfilePic;
+  MainAppBar({this.themeColor=AppColors.MAIN_COLOR, this.showProfilePic = true});
 
   @override
   _MainAppBarState createState() => _MainAppBarState();
@@ -32,11 +33,14 @@ class _MainAppBarState extends State<MainAppBar> {
         color: AppColors.MAIN_COLOR,
       ),
       actions: [
-        Container(
-          margin: const EdgeInsets.only(right: 10),
-          padding: const EdgeInsets.all(10),
-          child: ClipOval(
-            child: Image.asset('assets/imgs/me.jpg'),
+        Opacity(
+          opacity: widget.showProfilePic! ? 1:0,
+          child: Container(
+            margin: const EdgeInsets.only(right: 10),
+            padding: const EdgeInsets.all(10),
+            child: ClipOval(
+              child: Image.asset('assets/imgs/me.jpg'),
+            ),
           ),
         ),
       ],

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:grocery/helper/utils.dart';
 import 'package:grocery/pages/categorylistpage.dart';
 import 'package:grocery/pages/detailspage.dart';
+import 'package:grocery/pages/mappage.dart';
 import 'package:grocery/pages/onboardingpage.dart';
 import 'package:grocery/pages/selectedcategorypage.dart';
 import 'package:grocery/pages/splash.dart';

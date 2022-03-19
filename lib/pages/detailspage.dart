@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:grocery/helper/appcolors.dart';
 import 'package:grocery/models/categorypart.dart';
 import 'package:grocery/models/subcategory.dart';
+import 'package:grocery/pages/mappage.dart';
 import 'package:grocery/widgets/categoryicon.dart';
 import 'package:grocery/widgets/categorypartslist.dart';
 import 'package:grocery/widgets/mainappbar.dart';
@@ -155,7 +156,7 @@ class _DetailsPageState extends State<DetailsPage> {
                         color: AppColors.DARK_GREEN,
                         highlight: AppColors.DARKER_GREEN,
                         onClick: () {
-
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => MapPage()));
                         }),
                   ],
                 ),
